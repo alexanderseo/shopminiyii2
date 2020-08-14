@@ -2,52 +2,32 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'PHP – тестовое задание';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
     <div class="body-content">
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+        <p>Реализовать на Yii2 инструменты работы с товарами и заказами с минимальным необходимым интерфейсом. Спроектировать для этого MySQL базу данных с необходимыми таблицами и связями между ними.</p>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+        <p>Для товаров:</p>
+        <ol>
+            <li>Создание товара (название, цена, кол-во и т.д.)
+            <li>Редактирование товара
+            <li>Просмотр списка товаров и их поиск/фильтр
+        </ol>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+        <p>Для заказов:</p>
+        <ol>
+            <li>Создание заказа
+            <li>Редактирование заказа
+            <li>Добавление и удаление доступных товаров
+            <li>Смена статуса заказа
+            <li>Просмотр списка заказов и их поиск/фильтр (по статусу, по номеру и т.д.)
+        </ol>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
+        <p>Проект для демонстрации разместить в репозитории GitHub, GitLab или любом другом (коммитов больше одного). Будет плюсом если работающие инструменты будут доступны для тестирования через интернет (хостинг или свой сервер).</p>
+        <p>Свои улучшения и доработки приветствуются.</p>
 
     </div>
 </div>
