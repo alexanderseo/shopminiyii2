@@ -32,6 +32,40 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'customer',
             'status',
+            [
+                'label' => 'Товары',
+                'value' => function($order) {
+                    $result = '';
+                    foreach($order->items as $item) {
+                        $result .= DetailView::widget([
+                            'model' => $item,
+                            'attributes' => [
+                                [
+                                    'label' => 'Товар',
+                                    'value' => function($item) {
+                                        return Html::a($item->product->title, ['product/update', 'id' => $item->product->id]);
+                                    },
+                                    'format' => 'raw',
+                                ],
+                                [
+                                    'label' => 'Количество',
+                                    'value' => function($item) {
+                                        return $item->quantity;
+                                    }
+                                ]
+                            ]
+                        ]);
+                    }
+                    return $result;
+                },
+                'format' => 'raw'
+            ],
+            [
+                'label' => 'Итого',
+                'value' => function($item) {
+                    return $item->getTotalPrice();
+                }
+            ]
         ],
     ]) ?>
 

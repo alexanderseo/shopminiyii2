@@ -42,9 +42,9 @@ class OrderItem extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'order_id' => 'Order ID',
-            'product_id' => 'Product ID',
-            'quantity' => 'Quantity',
+            'order_id' => 'Заказ',
+            'product_id' => 'Товар',
+            'quantity' => 'Количество',
         ];
     }
 

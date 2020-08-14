@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\Product;
 use Yii;
 use common\models\Order;
 use common\models\OrderQuery;
@@ -70,8 +71,11 @@ class OrderController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $products = Product::find()->select(['title', 'id'])->indexBy('id')->column();
+
         return $this->render('create', [
             'model' => $model,
+            'products' => $products,
         ]);
     }
 
@@ -90,8 +94,11 @@ class OrderController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $products = Product::find()->select(['title', 'id'])->indexBy('id')->column();
+
         return $this->render('update', [
             'model' => $model,
+            'products' => $products,
         ]);
     }
 

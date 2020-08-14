@@ -7,33 +7,30 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\ProductQuery */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Products';
+$this->title = 'Товары';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="product-index">
+<div class="box">
+    <div class="box-body">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        <p>
+            <?= Html::a('Добавить товар', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
 
-    <p>
-        <?= Html::a('Create Product', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                'id',
+                'title',
+                'text:ntext',
+                'price',
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]); ?>
 
-            'id',
-            'title',
-            'text:ntext',
-            'price',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-
-
+    </div>
 </div>

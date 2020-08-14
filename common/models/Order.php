@@ -3,6 +3,7 @@
 namespace common\models;
 
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
+use lhs\Yii2SaveRelationsBehavior\SaveRelationsTrait;
 
 /**
  * This is the model class for table "{{%orders}}".
@@ -16,6 +17,8 @@ use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
  */
 class Order extends \yii\db\ActiveRecord
 {
+    use SaveRelationsTrait;
+
     const STATUS_NEW = 0;
     const STATUS_COMPLETE = 10;
 
@@ -67,6 +70,26 @@ class Order extends \yii\db\ActiveRecord
                 ],
             ],
         ];
+    }
+
+    public function getTotalPrice()
+    {
+        $items = $this->items;
+        $total = 0;
+        foreach ($items as $item) {
+            $total += $item->product->price * $item->quantity;
+        }
+        return $total;
+    }
+
+    public function getProductsCount()
+    {
+        $items = $this->items;
+        $count = 0;
+        foreach ($items as $item) {
+            $count += $item->quantity;
+        }
+        return $count;
     }
 
     public function transactions()
