@@ -12,7 +12,7 @@ class OrderItemFixture extends ActiveFixture
     public function getData()
     {
         $data = [];
-        foreach (range(1,500) as $i) {
+        foreach (range(1,100) as $i) {
             $order = Order::find()->select('id')->limit(1)->orderBy('rand()')->scalar();
             $product = Product::find()->select('id')->limit(1)->orderBy('rand()')->scalar();
             $data[] = [
