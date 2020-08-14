@@ -86,7 +86,7 @@ $i = 0;
             i++;
             return false;
         });
-        $('.remove-product').on('click', function() {
+        $('body').on('click', '.remove-product', function() {
             $(this).parents('.form-group').remove();
         });
     });
