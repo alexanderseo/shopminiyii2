@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use Yii;
+use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 
 /**
  * This is the model class for table "{{%orders}}".
@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property string $customer
  * @property int $status
+ * @property OrderItem[] $items
  *
  * @property Product[] $products
  */
@@ -51,9 +52,27 @@ class Order extends \yii\db\ActiveRecord
         return $this->status === self::STATUS_COMPLETE;
     }
 
-    public function getProducts()
+    public function getItems()
     {
-        return $this->hasMany(Product::class, ['id' => 'product_id'])
-            ->viaTable('order_products', ['order_id' => 'id']);
+        return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
+    }
+
+    public function behaviors()
+    {
+        return [
+            'saveRelations' => [
+                'class' => SaveRelationsBehavior::class,
+                'relations' => [
+                    'items' => ['cascadeDelete' => true],
+                ],
+            ],
+        ];
+    }
+
+    public function transactions()
+    {
+        return [
+            self::SCENARIO_DEFAULT => self::OP_ALL,
+        ];
     }
 }

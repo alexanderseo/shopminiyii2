@@ -15,17 +15,11 @@ use Yii;
  */
 class Product extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function tableName()
     {
         return '{{%products}}';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
