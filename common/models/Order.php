@@ -17,8 +17,6 @@ use lhs\Yii2SaveRelationsBehavior\SaveRelationsTrait;
  */
 class Order extends \yii\db\ActiveRecord
 {
-    use SaveRelationsTrait;
-
     const STATUS_NEW = 0;
     const STATUS_COMPLETE = 10;
 
@@ -97,5 +95,24 @@ class Order extends \yii\db\ActiveRecord
         return [
             self::SCENARIO_DEFAULT => self::OP_ALL,
         ];
+    }
+
+    public function loadItems($post)
+    {
+        $items = [];
+        foreach (($post['OrderItem'] ?? []) as $item) {
+            $params = [];
+            if ($item['id']) {
+                $orderItem = OrderItem::findOne((int) $item['id']);
+                $orderItem->quantity = (int) $item['quantity'];
+                $items[] = $orderItem;
+                continue;
+            };
+            $params['order_id'] = $this->id;
+            $params['product_id'] = (int) $item['product_id'];
+            $params['quantity'] = (int) $item['quantity'];
+            $items[] = new OrderItem($params);
+        }
+        return $items;
     }
 }

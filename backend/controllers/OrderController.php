@@ -68,6 +68,9 @@ class OrderController extends Controller
         $model = new Order();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $post = Yii::$app->request->post();
+            $model->items = $model->loadItems($post);
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -91,6 +94,9 @@ class OrderController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $post = Yii::$app->request->post();
+            $model->items = $model->loadItems($post);
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

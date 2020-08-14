@@ -1,6 +1,6 @@
 <?php
 
-use common\models\OrderItem;
+use common\models\Order;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -18,7 +18,10 @@ $i = 0;
 
     <?= $form->field($model, 'customer')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList([
+        Order::STATUS_NEW => 'Новый',
+        Order::STATUS_COMPLETE => 'Выполнен',
+    ]) ?>
 
     <div class="box box-solid box-primary">
         <div class="box-header">
@@ -28,7 +31,6 @@ $i = 0;
             <?php foreach ($model->items as $item): ?>
                 <div class="row form-group">
                     <input type="hidden" name="OrderItem[<?=$i ?>][id]" value="<?= $item->id ?>">
-                    <input type="hidden" name="OrderItem[<?=$i ?>][order_id]" value="<?= $model->id ?>">
                     <div class="col-sm-8">
                         <?= Html::dropDownList(
                             "OrderItem[$i][product_id]",
@@ -65,7 +67,6 @@ $i = 0;
         $('.add-product').on('click', function() {
             var html = `
 <div class="row form-group">
-    <input type="hidden" name="OrderItem[${i}][order_id]" value="<?= $model->id ?>">
     <div class="col-sm-8">
         <select class="form-control" name="OrderItem[${i}][product_id]">
             <?php foreach ($products as $index => $product): ?>
